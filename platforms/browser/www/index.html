@@ -12,23 +12,27 @@
 </head>
 <body onload="init()">
 <script>
-var goalsScored;
-var bgcolour;
+// var goalsScored;
+// var bgcolour;
 
 function init() {
     var goalsScored = parseInt(localStorage.getItem("goalsScored"))
-    bgcolour = localStorage.getItem("bgcolour")
+    var bgcolour = localStorage.getItem("bgcolour")
     // init first run
-    if (goalsScored == undefined) {
+    if (isNaN(goalsScored)) {
+      console.log("IS A NAN")
       localStorage.setItem("goalsScored", "0")
       goalsScored = 0;
+    } else {
+      console.log("IS NOT A NAN")
+
     }
   var elemScore = document.getElementById("score")
   elemScore.innerHTML = goalsScored
   if(goalsScored >= 10) {
-      elemScore.setAttribute("style", "font-size: 58vh !important;");
+      elemScore.setAttribute("style", "font-size: 48vh !important;");
   } else {
-      elemScore.setAttribute("style", "font-size: 100vh;");
+      elemScore.setAttribute("style", "font-size: 90vh;");
   }
   
   if (bgcolour == undefined) {
@@ -42,7 +46,7 @@ function init() {
     
   console.log("in init")
   
-  document.getElementById("navbar").scrollTo(0, 30)
+  //document.getElementById("navbar").scrollTo(0, 30)
 }
 
 // init(); 
@@ -73,7 +77,7 @@ function reset() {
   localStorage.setItem("goalsScored", "0")
   elemScore.innerHTML = 0;
   var elemScore = document.getElementById("score");
-  elemScore.setAttribute("style", "font-size: 100vh;");
+  elemScore.setAttribute("style", "font-size: 90vh;");
 }
 
 function addGoal() {
@@ -89,9 +93,9 @@ function addGoal() {
   var elemScore = document.getElementById("score");
 
   if(goalsScored >= 10) {
-      elemScore.setAttribute("style", "font-size: 58vh;");
+      elemScore.setAttribute("style", "font-size: 48vh;");
   } else {
-      elemScore.setAttribute("style", "font-size: 100vh;");
+      elemScore.setAttribute("style", "font-size: 90vh;");
   }
   
   
@@ -106,7 +110,7 @@ function settings() {
     
     </script>
     
-    <nav id="navbar" class="mt-5 navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
 
         <!-- Button trigger modal -->
       
