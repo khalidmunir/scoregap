@@ -1,0 +1,32 @@
+html, body {
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  body {
+    background-color: orange;
+  }
+  
+  #home {
+    background-color: lightblue;
+  }
+  
+  #away {
+    background-color: orange;
+  }
+  
+  .result {
+    transform: translateY(-20%);
+  }
+  
+  .score {
+    font-size: 100vh;
+  }
+  
+  #btn-cog {
+    font-size: 2em !important;
+  }
+
+  .navbar-expand-lg.navbar-light.bg-light {
+    z-index: 100;
+}
