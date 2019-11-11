@@ -6,171 +6,256 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/tempusdominus-bootstrap-4.min.css" />
+    <!-- <link rel="stylesheet" href="css/jquery.timepicker.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
-   
+
     <title>Score Board</title>
-</head>
-<body onload="init()">
-<script>
-// var goalsScored;
-// var bgcolour;
+  </head>
+  <body onload="init()">
+    <script>
+      // var goalsScored;
+      // var bgcolour;
+      
+      function init() {
+        var goalsScored = parseInt(localStorage.getItem("goalsScored"))
+        var bgcolour = localStorage.getItem("bgcolour")
+        // init first run
+        if (isNaN(goalsScored)) {
+          console.log("IS A NAN")
+          localStorage.setItem("goalsScored", "0")
+          goalsScored = 0;
+        } else {
+          console.log("IS NOT A NAN")
+          
+        }
+        var elemScore = document.getElementById("score")
+        elemScore.innerHTML = goalsScored
+        if(goalsScored >= 10) {
+          elemScore.setAttribute("style", "font-size: 45vh !important;");
+        } else {
+          elemScore.setAttribute("style", "font-size: 85vh;");
+        }
+        
+        if (bgcolour == undefined) {
+          localStorage.setItem("bgcolour", "0")
+          bgcolour = 0;
+        }
+        
+        if(bgcolour == 1 ) {
+          setBlueBg()
+        }
+        
+        console.log("in init")
+        
+        //document.getElementById("navbar").scrollTo(0, 30)
+        setInterval(function() {
+          var MatchEnds = moment([17, 00]); 
+          var newTime = moment();
+          var date = "2019-11-12";
+          var time = "19:00";
 
-function init() {
-    var goalsScored = parseInt(localStorage.getItem("goalsScored"))
-    var bgcolour = localStorage.getItem("bgcolour")
-    // init first run
-    if (isNaN(goalsScored)) {
-      console.log("IS A NAN")
-      localStorage.setItem("goalsScored", "0")
-      goalsScored = 0;
-    } else {
-      console.log("IS NOT A NAN")
+          var timeAndDate = moment(date + ' ' + time);
+          
 
-    }
-  var elemScore = document.getElementById("score")
-  elemScore.innerHTML = goalsScored
-  if(goalsScored >= 10) {
-      elemScore.setAttribute("style", "font-size: 45vh !important;");
-  } else {
-      elemScore.setAttribute("style", "font-size: 85vh;");
-  }
-  
-  if (bgcolour == undefined) {
-      localStorage.setItem("bgcolour", "0")
-      bgcolour = 0;
-    }
-  
-  if(bgcolour == 1 ) {
-    setBlueBg()
-  }
-    
-  console.log("in init")
-  
-  //document.getElementById("navbar").scrollTo(0, 30)
-}
+          document.getElementById('ctime').innerHTML = newTime.format('LTS') + "<br> Match Ends (approx) " + newTime.to(timeAndDate); //newTime.format('LTS') + "<br>" + newTime.to(MatchEnds);
 
-// init(); 
 
-function setBlueBg() {
- console.log("SET BLUE BTN")
-  var body = document.body;
-  body.setAttribute("style", "background-color: lightblue;");
-  localStorage.setItem("bgcolour", "1")
-  
-}
+        }, 1000)
 
-function setOrangeBg() {
- console.log("SET BLUE BTN")
-  var body = document.body;
-  body.setAttribute("style", "background-color: orange;");
-  // var score = parseInt(elemScore.innerHTML);
-  localStorage.setItem("bgcolour", "0")
-  // score++;
-  elemScore.innerHTML = 0;
-}
-
-function reset() {
- console.log("RESET BTN")
-  var elemScore = document.getElementById("score");
-  // var score = parseInt(elemScore.innerHTML);
-  // score++;
-  localStorage.setItem("goalsScored", "0")
-  elemScore.innerHTML = 0;
-  var elemScore = document.getElementById("score");
-  elemScore.setAttribute("style", "font-size: 85vh;");
-}
-
-function addGoal() {
- //console.log("GOAL BTN")
-  //
-  
-  var goalsScored = localStorage.getItem("goalsScored")
-    // init first run
-    console.log("GOAL scored", goalsScored)
-  goalsScored++;
-  
-  localStorage.setItem("goalsScored", goalsScored)
-  var elemScore = document.getElementById("score");
-
-  if(goalsScored >= 10) {
-      elemScore.setAttribute("style", "font-size: 45vh;");
-  } else {
-      elemScore.setAttribute("style", "font-size: 85vh;");
-  }
-  
-  
-
-  
-  elemScore.innerHTML = goalsScored;
-}
-
-function settings() {
-  console.log("SETTINGS")
-}
-    
-    </script>
+      }
+      
+      // init(); 
+      
+      function setBlueBg() {
+        console.log("SET BLUE BTN")
+        var body = document.body;
+        body.setAttribute("style", "background-color: lightblue;");
+        localStorage.setItem("bgcolour", "1")
+        
+      }
+      
+      function setOrangeBg() {
+        console.log("SET BLUE BTN")
+        var body = document.body;
+        body.setAttribute("style", "background-color: orange;");
+        // var score = parseInt(elemScore.innerHTML);
+        localStorage.setItem("bgcolour", "0")
+        // score++;
+        elemScore.innerHTML = 0;
+      }
+      
+      function reset() {
+        console.log("RESET BTN")
+        var elemScore = document.getElementById("score");
+        // var score = parseInt(elemScore.innerHTML);
+        // score++;
+        localStorage.setItem("goalsScored", "0")
+        elemScore.innerHTML = 0;
+        var elemScore = document.getElementById("score");
+        elemScore.setAttribute("style", "font-size: 85vh;");
+      }
+      
+      function addGoal() {
+        //console.log("GOAL BTN")
+        //
+        
+        var goalsScored = localStorage.getItem("goalsScored")
+        // init first run
+        console.log("GOAL scored", goalsScored)
+        goalsScored++;
+        
+        localStorage.setItem("goalsScored", goalsScored)
+        var elemScore = document.getElementById("score");
+        
+        if(goalsScored >= 10) {
+          elemScore.setAttribute("style", "font-size: 45vh;");
+        } else {
+          elemScore.setAttribute("style", "font-size: 85vh;");
+        }
+        
+        var snd = new Audio("img/applause.mp3");
+        snd.play();
+        snd.currentTime=0;
+        
+        
+        elemScore.innerHTML = goalsScored;
+      }
+      
+      function settings() {
+        console.log("SETTINGS")
+      }
+      
+      </script>
     
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-
-        <!-- Button trigger modal -->
       
-        <span id="btn-cog" onclick="settings()" class="mr-5 my-2 my-sm-0"><i class="fa fa-cog fa-2" aria-hidden="true" data-toggle="modal" data-target="#exampleModal"></i></span>
+      <!-- Button trigger modal -->
       
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
+      <span id="btn-cog" onclick="settings()" class="mr-5 my-2 my-sm-0"><i class="fa fa-cog fa-2" aria-hidden="true" data-toggle="modal" data-target="#exampleModal"></i></span>
       
-          </li>
-          <li class="ml-5 mr-auto">
-           
-          </li>
-        </ul>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <span id="ctime"></span>
+        </li>
+        <li class="ml-5 mr-auto">
+          
+        </li>
+      </ul>
       
-         <button id="btn-goal" onclick="addGoal()" class="btn btn-success  mr-5 my-2 my-sm-0">Goal Scored <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-      </nav>
-      <div class="result">
-        <div id="score" class="score">
-          0
-        </div>
+      <button id="btn-goal" onclick="addGoal()" class="btn btn-success  mr-5 my-2 my-sm-0">Goal Scored <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+    </nav>
+    <div class="result">
+      <div id="score" class="score">
+        0
       </div>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-      
-            <div class="modal-body">
-      
-              <div class="row">
-      
-                <div class="card col-6">
-                  <div id="home" onclick="setBlueBg()" class="card-body">
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+            
+            <div class="row">
+              
+              <div class="card col-6">
+                <div id="home" onclick="setBlueBg()" class="card-body">
                     <h3>Home</h3>
                   </div>
                 </div>
                 <div class="card col-6">
                   <div id="away" onclick="setOrangeBg()" class="card-body">
-                    <h3>Away</h3>
+                      <h3>Away</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <hr>
-        <label>Reset : </label><button id="btn-reset" onclick="reset()" class="btn btn-danger mr-2 mt-3 my-2 my-sm-0">Reset Score</button>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-          </div>
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            
+                        </script>
+                    </div>
+                </div>
+                <hr>
+                <label>Reset: </label><button id="btn-reset" onclick="reset()" class="btn btn-danger mr-2 mt-3 my-2 my-sm-0">Reset Score</button>
+                
+              
+                
+          
+
+ 
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!--         <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
       </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+    </div>
+  </div>
+  <!-- <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
 
-</body>
-</html>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <!-- <script type="text/javascript" src="js/transition.js"></script>
+      <script type="text/javascript" src="/path/to/bootstrap/js/collapse.js"></script> -->
+    
+      <script type="text/javascript" src="js/tempusdominus-bootstrap-4.min.js"></script>
+    
+      <!-- <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script> -->
+    <script src="js/jquery.timepicker.min.js"></script>  
+    <script>
+        jQuery(document).ready(function(){
+       //     $('input.timepicker').timepicker({});
+          jQuery(function () {
+                                jQuery('#datetimepicker3').datetimepicker({
+                                    format: 'LTS',
+                                    // pickDate: false
+                                });
+                            });
+
+                            $(function () {
+                              var date = "2019-11-12";
+                              var time = "19:00";
+                              var timeAndDate = moment(date + ' ' + time);
+
+                              $('#datetimepicker1').datetimepicker({defaultDate: date + ' ' + time});
+                            });
+    
+            // jQuery('.timepicker').timepicker({
+            //     timeFormat: 'h:mm p',
+            //     interval: 10,
+            //     minTime: '10',
+            //     maxTime: '9:00pm',
+            //     defaultTime: '7:00pm',
+            //     startTime: '10:00',
+            //     dynamic: false,
+            //     dropdown: true,
+            //     scrollbar: true
+            // });
+        });
+    </script>
+  </body>
+    </html>
