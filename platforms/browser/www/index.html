@@ -36,7 +36,7 @@
         if(goalsScored >= 10) {
           elemScore.setAttribute("style", "font-size: 45vh !important;");
         } else {
-          elemScore.setAttribute("style", "font-size: 85vh;");
+          elemScore.setAttribute("style", "font-size: 65vh;");
         }
         
         if (bgcolour == undefined) {
@@ -105,7 +105,7 @@
         localStorage.setItem("goalsScored", "0")
         elemScore.innerHTML = 0;
         var elemScore = document.getElementById("score");
-        elemScore.setAttribute("style", "font-size: 85vh;");
+        elemScore.setAttribute("style", "font-size: 65vh;");
       }
       
       function addGoal() {
@@ -123,7 +123,7 @@
         if(goalsScored >= 10) {
           elemScore.setAttribute("style", "font-size: 45vh;");
         } else {
-          elemScore.setAttribute("style", "font-size: 85vh;");
+          elemScore.setAttribute("style", "font-size: 65vh;");
         }
         
         var snd = new Audio("img/applause.mp3");
@@ -166,16 +166,16 @@
         
       
         
-        <button id="btn-goal10" onclick="addGoal()" class="btn btn-success  mr-0 my-2 my-sm-0">10 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal9" onclick="addGoal()" class="btn btn-success  mr-0 my-2 my-sm-0">9 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal8" onclick="addGoal()" class="btn btn-success  mr-0 my-2 my-sm-0">8 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal7" onclick="addGoal()" class="btn btn-info  mr-0 my-2 my-sm-0">7 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal6" onclick="addGoal()" class="btn btn-info  mr-0 my-2 my-sm-0">6 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal5" onclick="addGoal()" class="btn btn-info  mr-0 my-2 my-sm-0">5 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal4" onclick="addGoal()" class="btn btn-primary  mr-0 my-2 my-sm-0">4 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal3" onclick="addGoal()" class="btn btn-primary  mr-0 my-2 my-sm-0">3 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal2" onclick="addGoal()" class="btn btn-primary mr-0 my-2 my-sm-0">2 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
-        <button id="btn-goal1" onclick="addGoal()" class="btn btn-danger  mr-0 my-2 my-sm-0">1 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal10" class="btn btn-success  mr-1 my-2 my-sm-0">10 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal9"  class="btn btn-success  mr-1 my-2 my-sm-0">9 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal8"  class="btn btn-success  mr-1 my-2 my-sm-0">8 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal7"  class="btn btn-info  mr-1 m-2 my-sm-0">7 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal6"  class="btn btn-info  mr-1 my-2 my-sm-0">6 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal5"  class="btn btn-info  mr-1 my-2 my-sm-0">5 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal4"  class="btn btn-primary  mr-1 my-2 my-sm-0">4 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal3"  class="btn btn-primary  mr-1 my-2 my-sm-0">3 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal2"  class="btn btn-primary mr-1 my-2 my-sm-0">2 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal1"  class="btn btn-danger  mr-1 my-2 my-sm-0">1 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
 
       </nav>
 
