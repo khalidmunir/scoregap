@@ -30,3 +30,20 @@ html, body {
   .navbar-expand-lg.navbar-light.bg-light {
     z-index: 100;
 }
+
+.hide {
+ display: none;
+}
+
+
+.nohide {
+  display: block !important;
+}
+
+.btn-group.special {
+  display: flex !important;
+}
+
+.special .btn {
+  flex: 1
+}

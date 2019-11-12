@@ -14,9 +14,11 @@
   </head>
   <body onload="init()">
     <script>
-      // var goalsScored;
+      var nextGame = localStorage.getItem("nextGame");
       // var bgcolour;
+      console.log("nextGame",nextGame)
       
+
       function init() {
         var goalsScored = parseInt(localStorage.getItem("goalsScored"))
         var bgcolour = localStorage.getItem("bgcolour")
@@ -52,13 +54,23 @@
         setInterval(function() {
           var MatchEnds = moment([17, 00]); 
           var newTime = moment();
-          var date = "2019-11-12";
-          var time = "19:00";
-
-          var timeAndDate = moment(date + ' ' + time);
+          localStorage.getItem("nextGame")
           
+          // var date = "2019-11-12";
+          // var time = "19:00";
 
-          document.getElementById('ctime').innerHTML = newTime.format('LTS') + "<br> Match Ends (approx) " + newTime.to(timeAndDate); //newTime.format('LTS') + "<br>" + newTime.to(MatchEnds);
+          var timeAndDate = moment(localStorage.getItem("nextGame"));
+          var diffMin = timeAndDate.diff(newTime, 'minutes')
+          console.log("diff", diffMin)
+          if(10 >= diffMin) {
+            $("#navbar10").addClass("nohide")
+            for(let i =10;i>diffMin;i--) {
+              console.log("i:",i)
+               $('#btn-goal' + i).toggleClass('hide', true)
+            }  
+
+          } 
+          document.getElementById('ctime').innerHTML = newTime.format('LTS') + "<br> Match Ends (approx) " + timeAndDate.fromNow(); //newTime.format('LTS') + "<br>" + newTime.to(MatchEnds);
 
 
         }, 1000)
@@ -145,6 +157,29 @@
       
       <button id="btn-goal" onclick="addGoal()" class="btn btn-success  mr-5 my-2 my-sm-0">Goal Scored <i class="ml-1 fa fa-soccer-ball-o"></i></button>
     </nav>
+
+
+    <nav id="navbar10" class="navbar navbar-expand-lg navbar-dark hide btn-group special">
+      
+        <!-- Button trigger modal -->
+        
+        
+      
+        
+        <button id="btn-goal10" onclick="addGoal()" class="btn btn-success  mr-0 my-2 my-sm-0">10 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal9" onclick="addGoal()" class="btn btn-success  mr-0 my-2 my-sm-0">9 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal8" onclick="addGoal()" class="btn btn-success  mr-0 my-2 my-sm-0">8 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal7" onclick="addGoal()" class="btn btn-info  mr-0 my-2 my-sm-0">7 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal6" onclick="addGoal()" class="btn btn-info  mr-0 my-2 my-sm-0">6 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal5" onclick="addGoal()" class="btn btn-info  mr-0 my-2 my-sm-0">5 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal4" onclick="addGoal()" class="btn btn-primary  mr-0 my-2 my-sm-0">4 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal3" onclick="addGoal()" class="btn btn-primary  mr-0 my-2 my-sm-0">3 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal2" onclick="addGoal()" class="btn btn-primary mr-0 my-2 my-sm-0">2 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+        <button id="btn-goal1" onclick="addGoal()" class="btn btn-danger  mr-0 my-2 my-sm-0">1 <i class="ml-1 fa fa-soccer-ball-o"></i></button>
+
+      </nav>
+
+
     <div class="result">
       <div id="score" class="score">
         0
@@ -152,7 +187,7 @@
     </div>
     
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -229,20 +264,42 @@
     <script>
         jQuery(document).ready(function(){
        //     $('input.timepicker').timepicker({});
+
+      //  jQuery('#myModal').on('hidden.bs.modal', function () {
+      //       // do something…
+      //       console.log("YO closing!!")
+      //   });
+
+        jQuery('#exampleModal').on('hidden.bs.modal', function () {
+ 
+          //var val = $('#datetimepicker1')
+
+          var tmpV = $('#datetimepicker1').data('date')// .getFormattedDate('yyyy-mm-dd HH:mm');
+          window.alert('hidden event fired! '+ tmpV);
+          console.log("dt,", tmpV)
+          localStorage.setItem("nextGame", tmpV)
+        });
+
+
+          // jQuery(function () {
+          //                       // $('#datetimepicker1').datetimepicker({
+          //                       //     // format: 'LTS',
+          //                       //     // pickDate: false
+          //                       //     // onSelect: function(dateText) {
+          //                       //     //   alert(dateText)
+          //                       //     // }
+          //                       // });
+          //                   });
+
           jQuery(function () {
-                                jQuery('#datetimepicker3').datetimepicker({
-                                    format: 'LTS',
-                                    // pickDate: false
-                                });
-                            });
+            var date = "2019/11/12";
+            var time = "19:00";
+            var timeAndDate = moment(date + ' ' + time);
 
-                            $(function () {
-                              var date = "2019-11-12";
-                              var time = "19:00";
-                              var timeAndDate = moment(date + ' ' + time);
-
-                              $('#datetimepicker1').datetimepicker({defaultDate: date + ' ' + time});
-                            });
+            jQuery('#datetimepicker1').datetimepicker({defaultDate: date + ' ' + time, 
+            format: 'YYYY/MM/DD HH:mm'
+            });
+          });
     
             // jQuery('.timepicker').timepicker({
             //     timeFormat: 'h:mm p',
